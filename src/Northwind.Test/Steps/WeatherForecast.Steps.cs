@@ -45,10 +45,14 @@ namespace Northwind.Test.Features
             {
 				_forecast = _weather.ForecastFor(DateTime.Now.AddDays(-1));
             }
-			catch (Exception ex)
+			catch (ArgumentException ex)
             {
 				_serviceException = ex;
             }
+			catch
+			{
+				throw;
+			}
 		}
 
 		[Then(@"the service should throw an invalid argument exception")]

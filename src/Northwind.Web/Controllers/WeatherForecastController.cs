@@ -26,10 +26,18 @@ namespace Northwind.Web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable
-                .Range(1, 5)
-                .Select(index => _weather.ForecastFor(DateTime.Now.AddDays(index)))
-                .ToArray();
+            try
+            {
+                return Enumerable
+                    .Range(1, 5)
+                    .Select(index => _weather.ForecastFor(DateTime.Now.AddDays(index)))
+                    .ToArray();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("[{location}]: Could not get weather forecast. Ex: {ex}", nameof(WeatherForecastController), ex);
+                return new List<WeatherForecast>();
+            }
         }
     }
 }
