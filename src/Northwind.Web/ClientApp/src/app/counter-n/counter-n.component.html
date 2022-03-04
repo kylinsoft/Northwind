@@ -1,0 +1,10 @@
+<h1>Counter N</h1>
+
+<p>This is a simple example of an Angular component that counts by any number N given by the user</p>
+
+<p aria-live="polite">Current count: <strong id="counter">{{ currentCount }}</strong></p>
+<p aria-live="polite">Current N: <strong id="current-n">{{ incrementN }}</strong></p>
+
+<input id="increment-n" type="number" [(ngModel)]="incrementN"/>
+
+<button id="increment" class="btn btn-primary" (click)="incrementCounter()">Increment</button>
